@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://statusBrowse.caption"
+        focusComponent="statusesTable"
+        messagesPack="com.company.training.web.screens.status">
+    <data readOnly="true">
+        <collection id="statusesDc"
+                    class="com.company.training.entity.Status">
+            <view extends="_local"/>
+            <loader id="statusesDl">
+                <query>
+                    <![CDATA[select e from training_Status e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="statusesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="statusesTable"
+                dataLoader="statusesDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="statusesTable"
+                    width="100%"
+                    dataContainer="statusesDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="code"/>
+                <column id="name"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="statusesTable.create"/>
+                <button id="editBtn" action="statusesTable.edit"/>
+                <button id="removeBtn" action="statusesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

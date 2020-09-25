@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://stageBrowse.caption"
+        focusComponent="stagesTable"
+        messagesPack="com.company.training.web.screens.stage">
+    <data readOnly="true">
+        <collection id="stagesDc"
+                    class="com.company.training.entity.Stage">
+            <view extends="_local">
+                <property name="contract" view="_minimal"/>
+            </view>
+            <loader id="stagesDl">
+                <query>
+                    <![CDATA[select e from training_Stage e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="stagesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="stagesTable"
+                dataLoader="stagesDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="stagesTable"
+                    width="100%"
+                    dataContainer="stagesDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+                <column id="dateFrom"/>
+                <column id="dateTo"/>
+                <column id="amount"/>
+                <column id="vat"/>
+                <column id="totalAmount"/>
+                <column id="description"/>
+                <column id="contract"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="stagesTable.create"/>
+                <button id="editBtn" action="stagesTable.edit"/>
+                <button id="removeBtn" action="stagesTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

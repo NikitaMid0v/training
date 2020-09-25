@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://contractEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.training.web.screens.contract">
+    <data>
+        <instance id="contractDc"
+                  class="com.company.training.entity.Contract">
+            <view extends="_local">
+                <property name="customer" view="_minimal"/>
+                <property name="files" view="_minimal"/>
+                <property name="performer" view="_minimal"/>
+                <property name="stage" view="_minimal"/>
+                <property name="customerSigner" view="_minimal"/>
+                <property name="status" view="_minimal"/>
+                <property name="performerSigner" view="_minimal"/>
+            </view>
+            <loader/>
+            <collection id="filesDc" property="files"/>
+            <collection id="stageDc" property="stage"/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="scrollBox" spacing="true">
+        <scrollBox id="scrollBox" spacing="true">
+            <form id="form" dataContainer="contractDc">
+                <column width="350px">
+                    <pickerField id="customerField" property="customer">
+                        <actions>
+                            <action id="lookup" type="picker_lookup"/>
+                            <action id="clear" type="picker_clear"/>
+                        </actions>
+                    </pickerField>
+                    <pickerField id="performerField" property="performer">
+                        <actions>
+                            <action id="lookup" type="picker_lookup"/>
+                            <action id="clear" type="picker_clear"/>
+                        </actions>
+                    </pickerField>
+                    <textField id="numberField" property="number"/>
+                    <dateField id="signedDateField" property="signedDate"/>
+                    <lookupField id="typeField" property="type"/>
+                    <dateField id="dateToField" property="dateTo"/>
+                    <dateField id="dateFromField" property="dateFrom"/>
+                    <textField id="amountField" property="amount"/>
+                    <pickerField id="customerSignerField" property="customerSigner">
+                        <actions>
+                            <action id="lookup" type="picker_lookup"/>
+                            <action id="clear" type="picker_clear"/>
+                        </actions>
+                    </pickerField>
+                    <pickerField id="statusField" property="status">
+                        <actions>
+                            <action id="lookup" type="picker_lookup"/>
+                            <action id="clear" type="picker_clear"/>
+                        </actions>
+                    </pickerField>
+                    <pickerField id="performerSignerField" property="performerSigner">
+                        <actions>
+                            <action id="lookup" type="picker_lookup"/>
+                            <action id="clear" type="picker_clear"/>
+                        </actions>
+                    </pickerField>
+                    <textField id="vatField" property="vat"/>
+                    <textField id="totalAmountField" property="totalAmount"/>
+                </column>
+            </form>
+            <groupBox id="filesBox" caption="msg://com.company.training.entity/Contract.files">
+                <table id="filesTable" dataContainer="filesDc" width="100%" height="200px">
+                    <actions>
+                        <action id="add" type="add"/>
+                        <action id="exclude" type="exclude"/>
+                    </actions>
+                    <columns>
+                        <column id="name"/>
+                        <column id="createDate"/>
+                        <column id="extension"/>
+                    </columns>
+                    <buttonsPanel>
+                        <button action="filesTable.add"/>
+                        <button action="filesTable.exclude"/>
+                    </buttonsPanel>
+                </table>
+            </groupBox>
+            <groupBox id="stageBox" caption="msg://com.company.training.entity/Contract.stage">
+                <table id="stageTable" dataContainer="stageDc" width="100%" height="200px">
+                    <actions>
+                        <action id="create" type="create"/>
+                        <action id="edit" type="edit"/>
+                        <action id="remove" type="remove"/>
+                    </actions>
+                    <columns>
+                        <column id="name"/>
+                    </columns>
+                    <buttonsPanel>
+                        <button action="stageTable.create"/>
+                        <button action="stageTable.edit"/>
+                        <button action="stageTable.remove"/>
+                    </buttonsPanel>
+                </table>
+            </groupBox>
+        </scrollBox>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

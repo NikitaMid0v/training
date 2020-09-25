@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://contractBrowse.caption"
+        focusComponent="contractsTable"
+        messagesPack="com.company.training.web.screens.contract">
+    <data readOnly="true">
+        <collection id="contractsDc"
+                    class="com.company.training.entity.Contract">
+            <view extends="_local">
+                <property name="customer" view="_minimal"/>
+                <property name="files" view="_minimal"/>
+                <property name="performer" view="_minimal"/>
+                <property name="stage" view="_minimal">
+                    <property name="totalAmount"/>
+                </property>
+                <property name="customerSigner" view="_minimal"/>
+                <property name="status" view="_minimal"/>
+                <property name="performerSigner" view="_minimal"/>
+            </view>
+            <loader id="contractsDl">
+                <query>
+                    <![CDATA[select e from training_Contract e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="contractsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="contractsTable"
+                dataLoader="contractsDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="contractsTable"
+                    width="100%"
+                    dataContainer="contractsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="customer"/>
+                <column id="performer"/>
+                <column id="number"/>
+                <column id="signedDate"/>
+                <column id="type"/>
+                <column id="dateTo"/>
+                <column id="dateFrom"/>
+                <column id="amount"/>
+                <column id="customerSigner"/>
+                <column id="status"/>
+                <column id="performerSigner"/>
+                <column id="vat"/>
+                <column id="totalAmount"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="contractsTable.create"/>
+                <button id="editBtn" action="contractsTable.edit"/>
+                <button id="removeBtn" action="contractsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>
