@@ -12,7 +12,7 @@ create table TRAINING_CONTRACT (
     CUSTOMER_ID uuid not null,
     PERFORMER_ID uuid not null,
     NUMBER_ varchar(255),
-    SIGNED_DATE timestamp not null,
+    SIGNED_DATE date not null,
     TYPE_ varchar(50) not null,
     DATE_TO date,
     DATE_FROM date,
@@ -20,7 +20,7 @@ create table TRAINING_CONTRACT (
     CUSTOMER_SIGNER_ID uuid,
     STATUS_ID uuid not null,
     PERFORMER_SIGNER_ID uuid,
-    VAT double precision not null,
+    VAT decimal(19, 2) not null,
     TOTAL_AMOUNT decimal(19, 2),
     --
     primary key (ID)
@@ -57,7 +57,7 @@ create table TRAINING_ORGANIZATION (
     NAME varchar(255) not null,
     TAX_NUMBER varchar(255) not null,
     REGISTRATION_NUMBER varchar(255) not null,
-    ESCAPE_VAT decimal(19, 2),
+    ESCAPE_VAT boolean,
     --
     primary key (ID)
 )^
@@ -76,7 +76,7 @@ create table TRAINING_INVOICE (
     NUMBER_ varchar(255) not null,
     DATE_ timestamp not null,
     AMOUNT decimal(19, 2),
-    VAT double precision,
+    VAT decimal(19, 2),
     TOTAL_AMOUNT decimal(19, 2),
     DESCRIPTION text,
     --
@@ -96,7 +96,7 @@ create table TRAINING_SERVICE_COMPLETION_CERTIFICATE (
     --
     NUMBER_ varchar(255) not null,
     DATE_ timestamp not null,
-    VAT double precision not null,
+    VAT decimal(19, 2) not null,
     AMOUNT decimal(19, 2) not null,
     TOTAL_AMOUNT decimal(19, 2) not null,
     DESCRIPTION text,
@@ -126,7 +126,7 @@ create table TRAINING_STAGE (
     DATE_FROM date not null,
     DATE_TO date not null,
     AMOUNT decimal(19, 2),
-    VAT double precision not null,
+    VAT decimal(19, 2) not null,
     TOTAL_AMOUNT decimal(19, 2),
     DESCRIPTION text,
     INVOICE_ID uuid,
@@ -136,3 +136,17 @@ create table TRAINING_STAGE (
     primary key (ID)
 )^
 -- end TRAINING_STAGE
+-- begin TRAINING_SERVICE_COMPLETION_CERTIFICATE_FILE_DESCRIPTOR_LINK
+create table TRAINING_SERVICE_COMPLETION_CERTIFICATE_FILE_DESCRIPTOR_LINK (
+    SERVICE_COMPLETION_CERTIFICATE_ID uuid,
+    FILE_DESCRIPTOR_ID uuid,
+    primary key (SERVICE_COMPLETION_CERTIFICATE_ID, FILE_DESCRIPTOR_ID)
+)^
+-- end TRAINING_SERVICE_COMPLETION_CERTIFICATE_FILE_DESCRIPTOR_LINK
+-- begin TRAINING_INVOICE_FILE_DESCRIPTOR_LINK
+create table TRAINING_INVOICE_FILE_DESCRIPTOR_LINK (
+    INVOICE_ID uuid,
+    FILE_DESCRIPTOR_ID uuid,
+    primary key (INVOICE_ID, FILE_DESCRIPTOR_ID)
+)^
+-- end TRAINING_INVOICE_FILE_DESCRIPTOR_LINK

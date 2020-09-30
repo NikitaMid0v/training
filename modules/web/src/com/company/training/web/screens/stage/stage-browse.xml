@@ -8,7 +8,9 @@
         <collection id="stagesDc"
                     class="com.company.training.entity.Stage">
             <view extends="_local">
-                <property name="contract" view="_minimal"/>
+                <property name="contract" view="contract-view"/>
+                <property name="invoice" view="_minimal"/>
+                <property name="serviceCompletionCertificate" view="_minimal"/>
             </view>
             <loader id="stagesDl">
                 <query>
@@ -28,11 +30,13 @@
         </filter>
         <groupTable id="stagesTable"
                     width="100%"
-                    dataContainer="stagesDc">
+                    dataContainer="stagesDc" multiselect="true">
             <actions>
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
+                <action id="runInvoiceReport"/>
+                <action id="runCertificateReport"/>
             </actions>
             <columns>
                 <column id="name"/>
@@ -43,6 +47,8 @@
                 <column id="totalAmount"/>
                 <column id="description"/>
                 <column id="contract"/>
+                <column id="invoice" />
+                <column id="serviceCompletionCertificate" />
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"
@@ -50,6 +56,12 @@
                 <button id="createBtn" action="stagesTable.create"/>
                 <button id="editBtn" action="stagesTable.edit"/>
                 <button id="removeBtn" action="stagesTable.remove"/>
+                <button id="createInvoiceAndCertificateBtn" invoke="onCreateInvoiceAndCertificateBtnClick"
+                        caption="Create invoice and certificate"/>
+                <button id="stagesTableRunInvoiceReportBtn" action="stagesTable.runInvoiceReport"
+                        caption="Invoice Report"/>
+                <button id="stagesTableRunCertificateReportBtn" action="stagesTable.runCertificateReport"
+                        caption="Certificate Report"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">

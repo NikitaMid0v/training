@@ -1,13 +1,17 @@
 package com.company.training.entity;
 
 import com.haulmont.chile.core.annotations.NamePattern;
+import com.haulmont.cuba.core.entity.FileDescriptor;
 import com.haulmont.cuba.core.entity.StandardEntity;
+import com.haulmont.cuba.core.entity.annotation.OnDelete;
+import com.haulmont.cuba.core.global.DeletePolicy;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Table(name = "TRAINING_SERVICE_COMPLETION_CERTIFICATE")
 @Entity(name = "training_ServiceCompletionCertificate")
@@ -19,6 +23,13 @@ public class ServiceCompletionCertificate extends StandardEntity {
     @Column(name = "NUMBER_", nullable = false)
     private String number;
 
+    @JoinTable(name = "TRAINING_SERVICE_COMPLETION_CERTIFICATE_FILE_DESCRIPTOR_LINK",
+            joinColumns = @JoinColumn(name = "SERVICE_COMPLETION_CERTIFICATE_ID"),
+            inverseJoinColumns = @JoinColumn(name = "FILE_DESCRIPTOR_ID"))
+    @OnDelete(DeletePolicy.CASCADE)
+    @ManyToMany
+    private List<FileDescriptor> files;
+
     @Temporal(TemporalType.TIMESTAMP)
     @NotNull
     @Column(name = "DATE_", nullable = false)
@@ -27,7 +38,7 @@ public class ServiceCompletionCertificate extends StandardEntity {
     @Column(name = "VAT", nullable = false)
     @NotNull
     @PositiveOrZero(message = "{msg://training_Contract.amount.validation.DecimalMin}")
-    private Double vat;
+    private BigDecimal vat;
 
     @Column(name = "AMOUNT", nullable = false)
     @PositiveOrZero(message = "{msg://training_Contract.amount.validation.DecimalMin}")
@@ -43,11 +54,19 @@ public class ServiceCompletionCertificate extends StandardEntity {
     @Column(name = "DESCRIPTION")
     private String description;
 
-    public void setVat(Double vat) {
+    public List<FileDescriptor> getFiles() {
+        return files;
+    }
+
+    public void setFiles(List<FileDescriptor> files) {
+        this.files = files;
+    }
+
+    public void setVat(BigDecimal vat) {
         this.vat = vat;
     }
 
-    public Double getVat() {
+    public BigDecimal getVat() {
         return vat;
     }
 

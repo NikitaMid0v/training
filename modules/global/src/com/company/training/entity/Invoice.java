@@ -1,6 +1,7 @@
 package com.company.training.entity;
 
 import com.haulmont.chile.core.annotations.NamePattern;
+import com.haulmont.cuba.core.entity.FileDescriptor;
 import com.haulmont.cuba.core.entity.StandardEntity;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Table(name = "TRAINING_INVOICE")
 @Entity(name = "training_Invoice")
@@ -18,6 +20,12 @@ public class Invoice extends StandardEntity {
     @NotNull
     @Column(name = "NUMBER_", nullable = false)
     private String number;
+
+    @JoinTable(name = "TRAINING_INVOICE_FILE_DESCRIPTOR_LINK",
+            joinColumns = @JoinColumn(name = "INVOICE_ID"),
+            inverseJoinColumns = @JoinColumn(name = "FILE_DESCRIPTOR_ID"))
+    @ManyToMany
+    private List<FileDescriptor> files;
 
     @Temporal(TemporalType.TIMESTAMP)
     @NotNull
@@ -30,7 +38,7 @@ public class Invoice extends StandardEntity {
 
     @Column(name = "VAT")
     @PositiveOrZero(message = "{msg://training_Contract.amount.validation.DecimalMin}")
-    private Double vat;
+    private BigDecimal vat;
 
     @Column(name = "TOTAL_AMOUNT")
     @PositiveOrZero(message = "{msg://training_Contract.amount.validation.DecimalMin}")
@@ -40,11 +48,19 @@ public class Invoice extends StandardEntity {
     @Column(name = "DESCRIPTION")
     private String description;
 
-    public void setVat(Double vat) {
+    public List<FileDescriptor> getFiles() {
+        return files;
+    }
+
+    public void setFiles(List<FileDescriptor> files) {
+        this.files = files;
+    }
+
+    public void setVat(BigDecimal vat) {
         this.vat = vat;
     }
 
-    public Double getVat() {
+    public BigDecimal getVat() {
         return vat;
     }
 

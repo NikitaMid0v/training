@@ -9,7 +9,7 @@
             <view extends="_local">
                 <property name="invoice" view="_minimal"/>
                 <property name="serviceCompletionCertificate" view="_minimal"/>
-                <property name="contract" view="_minimal"/>
+                <property name="contract" view="contract-view"/>
             </view>
             <loader/>
         </instance>
@@ -49,6 +49,8 @@
         <hbox id="editActions" spacing="true">
             <button action="windowCommitAndClose"/>
             <button action="windowClose"/>
+            <button id="createInvoiceAndCertificateBtn" invoke="onCreateInvoiceAndCertificateBtnClick"
+                    caption="Create invoice and certificate"/>
         </hbox>
     </layout>
 </window>

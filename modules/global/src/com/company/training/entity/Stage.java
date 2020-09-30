@@ -33,10 +33,10 @@ public class Stage extends StandardEntity {
     @PositiveOrZero(message = "{msg://training_Contract.amount.validation.DecimalMin}")
     private BigDecimal amount;
 
-    @NotNull
     @Column(name = "VAT", nullable = false)
+    @NotNull
     @PositiveOrZero(message = "{msg://training_Contract.amount.validation.DecimalMin}")
-    private Double vat;
+    private BigDecimal vat;
 
     @Column(name = "TOTAL_AMOUNT")
     @PositiveOrZero(message = "{msg://training_Contract.amount.validation.DecimalMin}")
@@ -57,6 +57,14 @@ public class Stage extends StandardEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CONTRACT_ID")
     private Contract contract;
+
+    public void setVat(BigDecimal vat) {
+        this.vat = vat;
+    }
+
+    public BigDecimal getVat() {
+        return vat;
+    }
 
     public Contract getContract() {
         return contract;
@@ -96,14 +104,6 @@ public class Stage extends StandardEntity {
 
     public void setTotalAmount(BigDecimal totalAmount) {
         this.totalAmount = totalAmount;
-    }
-
-    public Double getVat() {
-        return vat;
-    }
-
-    public void setVat(Double vat) {
-        this.vat = vat;
     }
 
     public BigDecimal getAmount() {

@@ -7,5 +7,15 @@
     <context:component-scan base-package="com.company.training"/>
     
     <gui:screens base-packages="com.company.training.web"/>
+    <bean id="training_proxyCreator" class="com.haulmont.cuba.web.sys.remoting.WebRemoteProxyBeanCreator">
+        <property name="serverSelector" ref="cuba_ServerSelector"/>
+        <property name="remoteServices">
+            <map>
+                <entry key="training_CalculateService" value="com.company.training.service.CalculateService"/>
+                <entry key="training_CastNumberService" value="com.company.training.service.CastNumberService"/>
+                <entry key="training_ReportProviderService" value="com.company.training.service.ReportProviderService"/>
+            </map>
+        </property>
+    </bean>
 
 </beans>

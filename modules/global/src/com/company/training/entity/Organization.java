@@ -7,7 +7,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import java.math.BigDecimal;
 
 @Table(name = "TRAINING_ORGANIZATION")
 @Entity(name = "training_Organization")
@@ -28,14 +27,14 @@ public class Organization extends StandardEntity {
     private String registrationNumber;
 
     @Column(name = "ESCAPE_VAT")
-    private BigDecimal escapeVat;
+    private Boolean escapeVat;
 
-    public BigDecimal getEscapeVat() {
-        return escapeVat;
+    public void setEscapeVat(Boolean escapeVat) {
+        this.escapeVat = escapeVat;
     }
 
-    public void setEscapeVat(BigDecimal escapeVat) {
-        this.escapeVat = escapeVat;
+    public Boolean getEscapeVat() {
+        return escapeVat;
     }
 
     public String getRegistrationNumber() {

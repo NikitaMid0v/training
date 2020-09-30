@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
 
+    <view entity="training_Contract" name="contract-view" extends="_local">
+        <property name="customer" view="_minimal">
+            <property name="escapeVat"/>
+        </property>
+        <property name="stage" view="_minimal"/>
+        <property name="customerSigner" view="_minimal"/>
+        <property name="status" view="_minimal"/>
+        <property name="performerSigner" view="_minimal"/>
+        <property name="performer" view="_minimal"/>
+        <property name="files" view="_minimal"/>
+    </view>
+    <view entity="report$Report" name="report-custom-view" extends="_local">
+        <property name="templates" view="_local"/>
+    </view>
 </views>

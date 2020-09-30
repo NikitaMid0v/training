@@ -7,9 +7,13 @@
         <instance id="contractDc"
                   class="com.company.training.entity.Contract">
             <view extends="_local">
-                <property name="customer" view="_minimal"/>
+                <property name="customer" view="_minimal">
+                    <property name="escapeVat"/>
+                </property>
                 <property name="files" view="_minimal"/>
-                <property name="performer" view="_minimal"/>
+                <property name="performer" view="_minimal">
+                    <property name="escapeVat"/>
+                </property>
                 <property name="stage" view="_minimal"/>
                 <property name="customerSigner" view="_minimal"/>
                 <property name="status" view="_minimal"/>

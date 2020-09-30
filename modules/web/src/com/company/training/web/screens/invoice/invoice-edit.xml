@@ -6,8 +6,11 @@
     <data>
         <instance id="invoiceDc"
                   class="com.company.training.entity.Invoice">
-            <view extends="_local"/>
+            <view extends="_local">
+                <property name="files" view="_minimal"/>
+            </view>
             <loader/>
+            <collection id="filesDc" property="files"/>
         </instance>
     </data>
     <dialogMode height="600"
@@ -23,6 +26,23 @@
                 <textArea id="descriptionField" property="description" rows="5"/>
             </column>
         </form>
+        <groupBox id="filesBox" caption="msg://com.company.training.entity/Invoice.files">
+            <table id="filesTable" dataContainer="filesDc" width="100%" height="200px">
+                <actions>
+                    <action id="add" type="add"/>
+                    <action id="exclude" type="exclude"/>
+                </actions>
+                <columns>
+                    <column id="name"/>
+                    <column id="createDate"/>
+                    <column id="extension"/>
+                </columns>
+                <buttonsPanel>
+                    <button action="filesTable.add"/>
+                    <button action="filesTable.exclude"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
         <hbox id="editActions" spacing="true">
             <button action="windowCommitAndClose"/>
             <button action="windowClose"/>

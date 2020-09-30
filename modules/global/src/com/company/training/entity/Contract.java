@@ -40,7 +40,7 @@ public class Contract extends StandardEntity {
     @Column(name = "NUMBER_")
     private String number;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @NotNull
     @Column(name = "SIGNED_DATE", nullable = false)
     private Date signedDate;
@@ -83,11 +83,19 @@ public class Contract extends StandardEntity {
     @Column(name = "VAT", nullable = false)
     @NotNull
     @PositiveOrZero(message = "{msg://training_Contract.amount.validation.DecimalMin}")
-    private Double vat;
+    private BigDecimal vat;
 
     @Column(name = "TOTAL_AMOUNT")
     @PositiveOrZero(message = "{msg://training_Contract.amount.validation.DecimalMin}")
     private BigDecimal totalAmount;
+
+    public void setVat(BigDecimal vat) {
+        this.vat = vat;
+    }
+
+    public BigDecimal getVat() {
+        return vat;
+    }
 
     public List<Stage> getStage() {
         return stage;
@@ -95,14 +103,6 @@ public class Contract extends StandardEntity {
 
     public void setStage(List<Stage> stage) {
         this.stage = stage;
-    }
-
-    public void setVat(Double vat) {
-        this.vat = vat;
-    }
-
-    public Double getVat() {
-        return vat;
     }
 
     public List<FileDescriptor> getFiles() {

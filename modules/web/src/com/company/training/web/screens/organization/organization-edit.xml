@@ -18,7 +18,7 @@
                 <textField id="nameField" property="name"/>
                 <textField id="taxNumberField" property="taxNumber"/>
                 <textField id="registrationNumberField" property="registrationNumber"/>
-                <textField id="escapeVatField" property="escapeVat"/>
+                <checkBox id="escapeVatField" property="escapeVat"/>
             </column>
         </form>
         <hbox id="editActions" spacing="true">
