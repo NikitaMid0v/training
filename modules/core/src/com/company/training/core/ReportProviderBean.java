@@ -2,6 +2,7 @@ package com.company.training.core;
 
 import com.haulmont.cuba.core.Persistence;
 import com.haulmont.cuba.core.TypedQuery;
+import com.haulmont.cuba.core.global.TimeSource;
 import com.haulmont.reports.entity.Report;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +14,8 @@ public class ReportProviderBean {
     public static final String NAME = "training_ReportProviderBean";
     @Inject
     private Persistence persistence;
+    @Inject
+    private TimeSource timeSource;
 
     @Transactional
     public Report getReport(String code){

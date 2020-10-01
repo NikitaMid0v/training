@@ -3,7 +3,8 @@
         xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
         caption="msg://contractBrowse.caption"
         focusComponent="contractsTable"
-        messagesPack="com.company.training.web.screens.contract">
+        messagesPack="com.company.training.web.screens.contract"
+        xmlns:chart="http://schemas.haulmont.com/charts/charts.xsd">
     <data readOnly="true">
         <collection id="contractsDc"
                     class="com.company.training.entity.Contract">
@@ -69,5 +70,10 @@
             <button action="lookupSelectAction"/>
             <button action="lookupCancelAction"/>
         </hbox>
+        <chart:pieChart
+                id="pieChart"
+                titleField="number"
+                valueField="totalAmount"
+        />
     </layout>
 </window>
