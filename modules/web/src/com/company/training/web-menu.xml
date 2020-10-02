@@ -7,6 +7,5 @@
         <item screen="training_ServiceCompletionCertificate.browse"
               caption="mainMsg://menu_config.training_ServiceCompletionCertificate.browse"/>
         <item screen="training_Stage.browse" caption="mainMsg://menu_config.training_Stage.browse"/>
-        <item screen="training_Status.browse" caption="mainMsg://menu_config.training_Status.browse"/>
     </menu>
 </menu-config>
