@@ -1,0 +1,3 @@
+update SEC_USER
+set VERSION=7, CREATE_TS='2020-10-01 10:44:28', CREATED_BY='admin', UPDATE_TS='2020-10-02 11:15:39', UPDATED_BY='admin', DELETE_TS=null, DELETED_BY=null, LOGIN='manager', LOGIN_LC='manager', PASSWORD='$2a$10$wP5V6N.VXDS7YEQFvDyDiOBcHCvF2BFv6BMZQj/fxnQAG7Z/gOlZa', PASSWORD_ENCRYPTION='bcrypt', NAME='manager manager', FIRST_NAME='manager', LAST_NAME='manager', MIDDLE_NAME='manager', POSITION_='manager', EMAIL='manager@manager', LANGUAGE_='en', TIME_ZONE=null, TIME_ZONE_AUTO=null, ACTIVE=true, CHANGE_PASSWORD_AT_LOGON=false, GROUP_ID='0fa2b1a5-1d68-4d69-9fbd-dff348347f93', GROUP_NAMES=null, IP_MASK=null, SYS_TENANT_ID=null
+where ID='805f3d8f-89f2-a457-a4ca-2b7d3ceadcf4';

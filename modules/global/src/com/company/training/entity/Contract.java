@@ -71,8 +71,7 @@ public class Contract extends StandardEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private User customerSigner;
 
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "STATUS_ID")
     private Status status;
 

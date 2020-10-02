@@ -16,6 +16,7 @@
                 <entry key="training_ReportProviderService" value="com.company.training.service.ReportProviderService"/>
                 <entry key="training_EntityGeneratorService"
                        value="com.company.training.service.EntityGeneratorService"/>
+                <entry key="training_SetStatusService" value="com.company.training.service.SetStatusService"/>
             </map>
         </property>
     </bean>

@@ -1,13 +1,9 @@
 package com.company.training.core;
 
-import com.company.training.entity.Contract;
-import com.company.training.entity.Invoice;
-import com.company.training.entity.ServiceCompletionCertificate;
-import com.company.training.entity.Stage;
+import com.company.training.entity.*;
 import com.haulmont.cuba.core.global.DataManager;
 import com.haulmont.cuba.core.global.TimeSource;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.util.Optional;
@@ -46,5 +42,24 @@ public class EntityGeneratorBean {
         certificate.setNumber(stageOptional.map(Stage::getContract).map(Contract::getNumber).orElse(null));
         certificate.setFiles(stageOptional.map(Stage::getContract).map(Contract::getFiles).orElse(null));
         return certificate;
+    }
+
+    public Status generateStatus(String name, String code){
+        Status status = dataManager.create(Status.class);
+        status.setName(name);
+        status.setCode(code);
+        return status;
+    }
+
+    public Stage generateDefaultStage(Contract contract){
+        Stage stage = dataManager.create(Stage.class);
+        stage.setName("defaultStage");
+        stage.setDateFrom(contract.getDateFrom());
+        stage.setDateTo(contract.getDateTo());
+        stage.setAmount(contract.getAmount());
+        stage.setVat(contract.getVat());
+        stage.setTotalAmount(contract.getTotalAmount());
+        stage.setContract(contract);
+        return stage;
     }
 }

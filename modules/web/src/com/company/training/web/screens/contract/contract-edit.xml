@@ -42,7 +42,6 @@
                             <action id="clear" type="picker_clear"/>
                         </actions>
                     </pickerField>
-                    <textField id="numberField" property="number"/>
                     <dateField id="signedDateField" property="signedDate"/>
                     <lookupField id="typeField" property="type"/>
                     <dateField id="dateToField" property="dateTo"/>
@@ -66,8 +65,8 @@
                             <action id="clear" type="picker_clear"/>
                         </actions>
                     </pickerField>
-                    <textField id="vatField" property="vat"/>
-                    <textField id="totalAmountField" property="totalAmount"/>
+                    <textField id="vatField" property="vat" editable="false"/>
+                    <textField id="totalAmountField" property="totalAmount" editable="false"/>
                 </column>
             </form>
             <groupBox id="filesBox" caption="msg://com.company.training.entity/Contract.files">

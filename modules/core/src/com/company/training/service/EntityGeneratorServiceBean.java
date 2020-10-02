@@ -1,9 +1,7 @@
 package com.company.training.service;
 
 import com.company.training.core.EntityGeneratorBean;
-import com.company.training.entity.Invoice;
-import com.company.training.entity.ServiceCompletionCertificate;
-import com.company.training.entity.Stage;
+import com.company.training.entity.*;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -20,5 +18,15 @@ public class EntityGeneratorServiceBean implements EntityGeneratorService {
 
     public ServiceCompletionCertificate generateCertificate(Stage stage) {
         return entityGeneratorBean.generateCertificate(stage);
+    }
+
+    @Override
+    public Status generateStatus(String name, String code) {
+        return entityGeneratorBean.generateStatus(name, code);
+    }
+
+    @Override
+    public Stage generateDefaultStage(Contract contract) {
+        return entityGeneratorBean.generateDefaultStage(contract);
     }
 }

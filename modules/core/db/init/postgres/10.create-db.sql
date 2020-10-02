@@ -17,9 +17,9 @@ create table TRAINING_CONTRACT (
     DATE_TO date,
     DATE_FROM date,
     AMOUNT decimal(19, 2) not null,
-    CUSTOMER_SIGNER_ID uuid,
-    STATUS_ID uuid not null,
-    PERFORMER_SIGNER_ID uuid,
+    CUSTOMER_SIGNER_ID uuid not null,
+    STATUS_ID uuid,
+    PERFORMER_SIGNER_ID uuid not null,
     VAT decimal(19, 2) not null,
     TOTAL_AMOUNT decimal(19, 2),
     --
